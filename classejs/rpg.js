@@ -1,10 +1,11 @@
-
+ var ts = new Tileset("tileset/mine.png");
 window.onload = function() 
 {
-    var ts = new Tileset("tileset\mine.png");
+   
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
-	
+    
+    alert (Tileset.image);
     ts.dessinerTile(1, ctx, 10, 10);
     ts.dessinerTile(5, ctx, 50, 10);
     ts.dessinerTile(6, ctx, 90, 10);

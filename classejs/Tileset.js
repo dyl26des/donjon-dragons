@@ -6,14 +6,14 @@ function Tileset(url)
     this.image.onload = function() 
         {
         if(!this.complete) 
-            throw new Error("Erreur de chargement du tileset nommé " + url);
+            throw new Error("Erreur de chargement du tileset nommÃ© " + url);
         this.referenceDuTileset.largeur = this.width / 32;
 	};
 	this.image.src = url;
 }
 
-// Méthode de dessin du tile numéro "numero" dans le contexte 2D "context" aux coordonnées x et y
-Tileset.dessinerTile = function(numero, context, xDestination, yDestination) 
+// Mï¿½thode de dessin du tile numÃ©ro "numero" dans le contexte 2D "context" aux coordonnÃ©es x et y
+Tileset.prototype.dessinerTile = function(numero, context, xDestination, yDestination) 
 {
     var xSourceEnTiles = numero % this.largeur;
     if(xSourceEnTiles === 0) xSourceEnTiles = this.largeur;
