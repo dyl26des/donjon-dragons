@@ -1,6 +1,7 @@
-var ts = new Tileset("C:\projetjs\tileset\mine.png");
+
 window.onload = function() 
 {
+    var ts = new Tileset("tileset\mine.png");
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
 	
