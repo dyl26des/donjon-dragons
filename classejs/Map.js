@@ -15,6 +15,7 @@ function Map(nom) {
     
     this.tileset = new Tileset(mapData.tileset);
     this.terrain = mapData.terrain;
+    this.decors  = mapData.decors;
 }
 
 // Pour récupérer la taille (en tiles) de la carte
@@ -27,6 +28,13 @@ Map.prototype.getLargeur = function() {
 Map.prototype.dessinerMap = function(context) {
 	for(var i = 0, l = this.terrain.length; i < l ; i++) {
 		var ligne = this.terrain[i];
+		var y = i * 32;
+		for(var j = 0, k = ligne.length; j < k ; j++) {
+			this.tileset.dessinerTile(ligne[j], context, j * 32, y);
+		}
+	}
+        for(var i = 0, l = this.decors.length; i < l ; i++) {
+		var ligne = this.decors[i];
 		var y = i * 32;
 		for(var j = 0, k = ligne.length; j < k ; j++) {
 			this.tileset.dessinerTile(ligne[j], context, j * 32, y);

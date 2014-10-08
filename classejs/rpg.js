@@ -1,5 +1,5 @@
 var ts = new Tileset("tileset/mine.png");
-var map = new Map("premiere");
+var map = new Map("000");
 
 window.onload = function() {
 	var canvas = document.getElementById('canvas');
