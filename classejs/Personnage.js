@@ -37,3 +37,41 @@ Personnage.prototype.dessinerPersonnage = function(context) {
     );
 
 };	
+
+Personnage.prototype.getCoordonneesAdjacentes = function(direction)  {
+	var coord = {'x' : this.x, 'y' : this.y};
+	switch(direction) {
+		case 0 : 
+			coord.y++;
+			break;
+		case 1 : 
+			coord.x--;
+			break;
+		case 2 : 
+			coord.x++;
+			break;
+		case 3 : 
+			coord.y--;
+			break;
+	}
+	return coord;
+};
+	
+Personnage.prototype.deplacer = function(direction, map) {
+	// On change la direction du personnage
+	this.direction = direction;
+		
+	// On vérifie que la case demandée est bien située dans la carte
+	var prochaineCase = this.getCoordonneesAdjacentes(direction);
+	if(prochaineCase.x < 0 || prochaineCase.y < 0 || prochaineCase.x >= map.getLargeur() || prochaineCase.y >= map.getHauteur()) {
+		// On retourne un booléen indiquant que le déplacement ne s'est pas fait, 
+		// Ça ne coute pas cher et ca peut toujours servir
+		return false;
+	}
+		
+	// On effectue le déplacement
+	this.x = prochaineCase.x;
+	this.y = prochaineCase.y;
+		
+	return true;
+};

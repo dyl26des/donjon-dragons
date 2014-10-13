@@ -2,6 +2,7 @@ function Map(nom) {
 	
 	// Création de l'objet XmlHttpRequest
 	var xhr = getXMLHttpRequest();
+        this.personnages = new Array();
 
 	// Ici viendra le code que je vous présente ci-dessous
         // Chargement du fichier
@@ -40,4 +41,15 @@ Map.prototype.dessinerMap = function(context) {
 			this.tileset.dessinerTile(ligne[j], context, j * 32, y);
 		}
 	}
+        for(var i = 0, l = this.personnages.length; i < l ; i++) {
+	this.personnages[i].dessinerPersonnage(context);
+        alert (this.personnages[i].image.src );
+        };
 };
+
+// Pour ajouter un personnage
+Map.prototype.addPersonnage = function(perso) {
+	this.personnages.push(perso);
+};
+
+//tracage des personnage au chargement de la map
