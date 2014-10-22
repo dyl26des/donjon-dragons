@@ -1,5 +1,5 @@
 function Map(nom) {
-	
+    this.personnages = new Array();
 	// Création de l'objet XmlHttpRequest
 	var xhr = getXMLHttpRequest();
 
@@ -25,6 +25,9 @@ Map.prototype.getHauteur = function() {
 Map.prototype.getLargeur = function() {
 	return this.terrain[0].length;
 };
+Map.prototype.addPersonnage = function(perso) {
+	this.personnages.push(perso);
+};
 Map.prototype.dessinerMap = function(context) {
 	for(var i = 0, l = this.terrain.length; i < l ; i++) {
 		var ligne = this.terrain[i];
@@ -40,4 +43,8 @@ Map.prototype.dessinerMap = function(context) {
 			this.tileset.dessinerTile(ligne[j], context, j * 32, y);
 		}
 	}
+       
+        for(var i = 0, l = this.personnages.length ; i < l ; i++) {
+	this.personnages[i].dessinerPersonnage(context);
+        }
 };
