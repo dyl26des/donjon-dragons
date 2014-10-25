@@ -108,7 +108,12 @@ Personnage.prototype.deplacer = function(direction, map) {
 		// On retourne un booléen indiquant que le déplacement ne s'est pas fait, 
 		// Ça ne coute pas cher et ca peut toujours servir
 		return false;
-	}
+	}else {     if (map.getDecors(prochaineCase.x,prochaineCase.y)>0){
+                return false;
+            }
+            
+        }
+        alert(map.getDecors(prochaineCase.x,prochaineCase.y));
 		
         // On commence l'animation
         this.etatAnimation = 1;

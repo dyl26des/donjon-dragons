@@ -20,10 +20,10 @@ window.onload = function() {
         
         // Gestion du clavier
     window.onkeydown = function(event) {
-	alert('test');
+	
         var e = event || window.event;
         var key = e.which || e.keyCode;
-        alert(key);
+        
         switch(key) {
 	case 38 : case 122 : case 119 : case 90 : case 87 : // Flèche haut, z, w, Z, W
 		joueur.deplacer(3, map);

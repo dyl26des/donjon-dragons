@@ -7,7 +7,7 @@ function Map(nom) {
         // Chargement du fichier
     xhr.open("GET", './maps/' + nom + '.json', false);
     xhr.send(null);
-    if(xhr.readyState != 4 || (xhr.status != 200 && xhr.status != 0)) // Code == 0 en local
+    if(xhr.readyState !== 4 || (xhr.status !== 200 && xhr.status !== 0)) // Code == 0 en local
 	throw new Error("Impossible de charger la carte nommée \"" + nom + "\" (code HTTP : " + xhr.status + ").");
     var mapJsonData = xhr.responseText;
     // Analyse des données
@@ -24,6 +24,10 @@ Map.prototype.getHauteur = function() {
 };
 Map.prototype.getLargeur = function() {
 	return this.terrain[0].length;
+};
+Map.prototype.getDecors = function( x, y){
+    var ligne=this.decors[y];
+    return ligne[x];
 };
 Map.prototype.addPersonnage = function(perso) {
 	this.personnages.push(perso);
