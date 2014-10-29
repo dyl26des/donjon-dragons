@@ -14,16 +14,21 @@ function Map(nom) {
     var mapData = JSON.parse(mapJsonData);
     
     this.tileset = new Tileset(mapData.tileset);
-    this.terrain = mapData.terrain;
+    this.terrain0 = mapData.terrain0;
+    this.terrain1 = mapData.terrain1;
     this.decors  = mapData.decors;
 }
 
 // Pour récupérer la taille (en tiles) de la carte
 Map.prototype.getHauteur = function() {
-	return this.terrain.length;
+	return this.terrain0.length;
 };
 Map.prototype.getLargeur = function() {
-	return this.terrain[0].length;
+	return this.terrain0[0].length;
+};
+Map.prototype.getTerrain1 = function( x, y){
+    var ligne=this.terrain1[y];
+    return ligne[x];
 };
 Map.prototype.getDecors = function( x, y){
     var ligne=this.decors[y];
@@ -33,15 +38,24 @@ Map.prototype.addPersonnage = function(perso) {
 	this.personnages.push(perso);
 };
 Map.prototype.dessinerMap = function(context) {
-	for(var i = 0, l = this.terrain.length; i < l ; i++) {
-		var ligne = this.terrain[i];
+	for(var i = 0, l = this.terrain0.length; i < l ; i++) {
+		var ligne = this.terrain0[i];
 		var y = i * 32;
 		for(var j = 0, k = ligne.length; j < k ; j++) {
 			this.tileset.dessinerTile(ligne[j], context, j * 32, y);
 		}
 	}
+
         for(var i = 0, l = this.decors.length; i < l ; i++) {
 		var ligne = this.decors[i];
+		var y = i * 32;
+		for(var j = 0, k = ligne.length; j < k ; j++) {
+			this.tileset.dessinerTile(ligne[j], context, j * 32, y);
+		}
+	}
+        
+        for(var i = 0, l = this.terrain1.length; i < l ; i++) {
+		var ligne = this.terrain1[i];
 		var y = i * 32;
 		for(var j = 0, k = ligne.length; j < k ; j++) {
 			this.tileset.dessinerTile(ligne[j], context, j * 32, y);
