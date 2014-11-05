@@ -2,8 +2,8 @@ var ts = new Tileset("tileset/mine.png");
 var map = new Map("000");
 var DUREE_ANIMATION = 4;
 var DUREE_DEPLACEMENT = 12;
-var joueur = new Personnage("Adam.png", 7, 14, 0);
-map.addPersonnage(joueur);
+var joueur = map.personnages[0];
+//map.addPersonnage(joueur);
 
 window.onload = function() {
 	var canvas = document.getElementById('canvas');
