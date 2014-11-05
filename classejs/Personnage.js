@@ -72,7 +72,19 @@ Personnage.prototype.dessinerPersonnage = function(context) {
 	this.largeur, this.hauteur // Taille du rectangle destination (c'est la taille du personnage)
     );
 
-};	
+};
+
+Personnage.prototype.repositionner = function (x,y,direction)   {
+    
+    this.x = x;
+    this.y = y;
+    if (0 <= direction >=3 ) {
+        this.direction= direction;
+    } else
+    {
+        this.direction = 0;
+    }
+};
 
 Personnage.prototype.getCoordonneesAdjacentes = function(direction)  {
 	var coord = {'x' : this.x, 'y' : this.y};
@@ -111,12 +123,18 @@ Personnage.prototype.deplacer = function(direction, map) {
 	}
         else 
         {     
-            
-                switch(map.getTerrain2(prochaineCase.x,prochaineCase.y)) 
+                terrain2 = map.getTerrain2(prochaineCase.x,prochaineCase.y);
+                
+                if (-3 >= terrain2 || terrain2 <= -1) {
+                    map.chargerMap(nextMap(terrain2));
+                    return false;
+                }
+                
+                switch(terrain2) 
                 {
-                    case 0 : break;
-                    case -1 : map.chargerMap("001");
-                        break;
+                    //cas 0 on ne fait rien, on peut se déplacer
+                    case 0 : 
+                    break;
                     default : return false; break;
                 }
                 

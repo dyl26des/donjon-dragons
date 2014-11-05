@@ -4,7 +4,12 @@ function Map(nom) {
     this.chargerMap(nom);
     
 }
-
+function Map(nom, joueur) {
+    this.personnages = new Array();
+    this.personnages[0] = joueur;
+    this.chargerMap(nom);
+    
+}
 
 
 Map.prototype.chargerMap = function (nom){
@@ -27,8 +32,8 @@ Map.prototype.chargerMap = function (nom){
     this.terrain2  = mapData.terrain2;
     this.terrain3 = mapData.terrain3;
     var posjoueur = mapData.posjoueur;
-    //alert(posjoueur[0]);
-    this.addPersonnage(new Personnage("Adam.png",posjoueur[0],posjoueur[1],posjoueur[2]));
+    
+    this.personnages[0].repositionner (posjoueur[0],posjoueur[1],posjoueur[2]);
     /* terrain0 = sol
      * terrain1 = objet au sol
      * terrain2 = mur et collision
