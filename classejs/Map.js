@@ -32,8 +32,19 @@ Map.prototype.chargerMap = function (nom){
     this.terrain2  = mapData.terrain2;
     this.terrain3 = mapData.terrain3;
     var posjoueur = mapData.posjoueur;
+    var pnjs    =   mapData.pnjs;
     
+ 
+    this.personnages.splice(1,this.personnages.length-1);
     this.personnages[0].repositionner (posjoueur[0],posjoueur[1],posjoueur[2]);
+
+    for (var i = 0, l = pnjs.length ; i < l; i++)
+    {
+        var pnj = pnjs[i];
+        
+        var persopnj = new Personnage (pnj[0],pnj[1],pnj[2], pnj[3]);
+        this.addPersonnage(persopnj);
+    }
     /* terrain0 = sol
      * terrain1 = objet au sol
      * terrain2 = mur et collision
