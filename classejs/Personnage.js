@@ -29,11 +29,14 @@ function Personnage (tile,x,y,direction) {
 /*******************************************************************************/
 
 Personnage.prototype.dessinerPersonnage = function(context) {
-    var frame = 0; // Numéro de l'image à prendre pour l'animation
+    var frame = 0; var precombat= false; // Numéro de l'image à prendre pour l'animation
     var decalageX = 0, decalageY = 0; // Décalage à appliquer à la position du personnage
     if(this.etatAnimation >= DUREE_DEPLACEMENT) {
 	// Si le déplacement a atteint ou dépassé le temps nécessaire pour s'effectuer, on le termine
 	this.etatAnimation = -1;
+        //on test si un mob vois le joueurs TODO
+        
+        
     } else if(this.etatAnimation >= 0) {
 	// On calcule l'image (frame) de l'animation à afficher
 	frame = Math.floor(this.etatAnimation / DUREE_ANIMATION);
@@ -71,7 +74,7 @@ Personnage.prototype.dessinerPersonnage = function(context) {
 	
 	this.largeur, this.hauteur // Taille du rectangle destination (c'est la taille du personnage)
     );
-
+    if (precombat) {precombat(context,mob);}
 };
 
 Personnage.prototype.repositionner = function (x,y,direction)   {
@@ -136,12 +139,9 @@ Personnage.prototype.deplacer = function(direction, map) {
                     case 0 : 
                     break;
                     default : return false; break;
-                }
-                
-                
-            
-            
+                }                                              
         }	
+        
         // On commence l'animation
         this.etatAnimation = 1;
 	// On effectue le déplacement

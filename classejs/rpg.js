@@ -3,19 +3,17 @@ var joueur = new Personnage("Adam.png",0,0,0);
 var map = new Map("000",joueur);
 var DUREE_ANIMATION = 4;
 var DUREE_DEPLACEMENT = 12;
+var ctx;
 
-
-window.onload = function() {
-	var canvas = document.getElementById('canvas');
-	var ctx = canvas.getContext('2d');
-	
+function mDeplacement (ctx) {
+    
         
         
 	canvas.width  = map.getLargeur() * 32;
 	canvas.height = map.getHauteur() * 32;
 	
 	setInterval(function() {
-	map.dessinerMap(ctx);
+            map.dessinerMap(ctx);
         }, 40);
         
         // Gestion du clavier
@@ -41,7 +39,50 @@ window.onload = function() {
 		//alert(key);
 		// Si la touche ne nous sert pas, nous n'avons aucune raison de bloquer son comportement normal.
 		return true;
-}
+        }
 	return false;
     };
+    
+}
+function mPreCombat (ctx,mob) {
+    
+        
+        
+	canvas.width  = map.getLargeur() * 32;
+	canvas.height = map.getHauteur() * 32;
+	
+	setInterval(function() {
+            map.dessinerMap(ctx);
+        }, 40);
+        
+        // Gestion du clavier
+        window.onkeydown = function() {
+            return false;
+        };
+        if (mob.x === joueur.x)
+        {
+            while(  !(    (mob.y === (joueur.y - 1)) || (mob.y === (joueur.y+1)) )   )
+            {
+                if (mob.etatAnimation === -1 ) {mob.deplacement(mob.direction,map);}
+            }
+        }
+        else  
+        {
+            if (mob.y === joueur.y)
+            {
+                while(  !(    (mob.x === (joueur.x - 1)) || (mob.x === (joueur.x+1)) )   )
+                {
+                    if (mob.etatAnimation === -1 ) {mob.deplacement(mob.direction,map);}
+                }
+            }
+        }
+        
+    
+}
+
+window.onload = function() {
+	var canvas = document.getElementById('canvas');
+	ctx = canvas.getContext('2d');
+        mDeplacement (ctx);
+	
 };

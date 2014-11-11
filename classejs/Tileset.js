@@ -15,6 +15,7 @@ function Tileset(url)
 // M�thode de dessin du tile numéro "numero" dans le contexte 2D "context" aux coordonnées x et y
 Tileset.prototype.dessinerTile = function(numero, context, xDestination, yDestination) 
 {
+    if (numero > 0){
     var xSourceEnTiles = numero % this.largeur;
     if(xSourceEnTiles === 0) xSourceEnTiles = this.largeur;
     var ySourceEnTiles = Math.ceil(numero / this.largeur);
@@ -22,5 +23,5 @@ Tileset.prototype.dessinerTile = function(numero, context, xDestination, yDestin
     var xSource = (xSourceEnTiles - 1) * 32;
     var ySource = (ySourceEnTiles - 1) * 32;
     
-    context.drawImage(this.image, xSource, ySource, 32, 32, xDestination, yDestination, 32, 32);
+    context.drawImage(this.image, xSource, ySource, 32, 32, xDestination, yDestination, 32, 32);}
 };
