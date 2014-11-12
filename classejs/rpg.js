@@ -4,6 +4,7 @@ var map = new Map("000",joueur);
 var DUREE_ANIMATION = 4;
 var DUREE_DEPLACEMENT = 12;
 var ctx;
+var isPreCombat=false;
 
 function mDeplacement (ctx) {
     
@@ -46,7 +47,7 @@ function mDeplacement (ctx) {
 }
 function mPreCombat (ctx,mob) {
     
-        
+    isPreCombat= true; 
         
 	canvas.width  = map.getLargeur() * 32;
 	canvas.height = map.getHauteur() * 32;
@@ -63,7 +64,7 @@ function mPreCombat (ctx,mob) {
         {
             while(  !(    (mob.y === (joueur.y - 1)) || (mob.y === (joueur.y+1)) )   )
             {
-                if (mob.etatAnimation === -1 ) {mob.deplacement(mob.direction,map);}
+                if (mob.etatAnimation === -1 ) {mob.deplacer(mob.direction,map);}
             }
         }
         else  
@@ -72,7 +73,10 @@ function mPreCombat (ctx,mob) {
             {
                 while(  !(    (mob.x === (joueur.x - 1)) || (mob.x === (joueur.x+1)) )   )
                 {
-                    if (mob.etatAnimation === -1 ) {mob.deplacement(mob.direction,map);}
+                    if (mob.etatAnimation === -1 ) 
+                    {
+                        mob.deplacer(mob.direction,map);
+                    }
                 }
             }
         }

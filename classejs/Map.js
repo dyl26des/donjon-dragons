@@ -106,4 +106,37 @@ Map.prototype.dessinerMap = function(context) {
 			this.tileset.dessinerTile(ligne[j], context, j * 32, y);
 		}
         }
+        
+        if (!isPreCombat && this.personnages[0].etatAnimation===-1 ){
+            for (var i=1, l = this.personnages.length ; i<l;i++){
+                var mob = this.personnages[i];
+
+                switch  (mob.direction) {
+                    case 0 : 
+                        if ((mob.x === this.personnages[0].x) && (mob.y < this.personnages[0].y))
+                        {
+                            mPreCombat(context,mob);
+                        }
+                    break;
+                    case 1 : 
+                        if ((mob.y === this.personnages[0].y) && (mob.x > this.personnages[0].x))
+                        {
+                            mPreCombat(context,mob);
+                        }
+                    break;
+                    case 2 : 
+                        if ((mob.x === this.personnages[0].x) && (mob.y > this.personnages[0].y))
+                        {
+                            mPreCombat(context,mob);
+                        }
+                    break;
+                    case 3 : 
+                        if ((mob.y === this.personnages[0].y) && (mob.x < this.personnages[0].x))
+                        {
+                            mPreCombat(context,mob);
+                        }
+                    break;
+                }
+            }
+        }
 };

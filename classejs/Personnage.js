@@ -37,6 +37,7 @@ Personnage.prototype.dessinerPersonnage = function(context) {
         //on test si un mob vois le joueurs TODO
         
         
+        
     } else if(this.etatAnimation >= 0) {
 	// On calcule l'image (frame) de l'animation à afficher
 	frame = Math.floor(this.etatAnimation / DUREE_ANIMATION);
