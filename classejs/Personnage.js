@@ -124,24 +124,31 @@ Personnage.prototype.agro = function (persoagro,map) {
     {
         if (this.y<persoagro.y)
         {
-            this.agroxy = [persoagro.x,persoagro.y -1];
+            this.agroxy = [persoagro.x,persoagro.y--];
         }
         else
         {
-            this.agroxy = [persoagro.x,persoagro.y +1];
+            this.agroxy[0] = persoagro.x;
+            this.agroxy[1] = persoagro.y++;
         }
     }
     if (this.y === persoagro.y )
     {
         if (this.x <persoagro.x)
         {
-            this.agroxy = [persoagro.x -1,persoagro.y];
+            this.agroxy[0] = persoagro.x-1;
+            this.agroxy[1] = persoagro.y;
         }
         else
         {
-            this.agroxy = [persoagro.x +1,persoagro.y];
+            tempx = persoagro.x;
+            tempx++;
+            this.agroxy[0] = tempx
+            ;
+            this.agroxy[1] = persoagro.y;
         }
     }
+    alert ( this.agroxy[0] +";" + this.agroxy[1] + "  && " + persoagro.x + ";" +persoagro.y);
     this.deplacer(this.direction,map);
 };
 Personnage.prototype.deplacer = function(direction,map) {
