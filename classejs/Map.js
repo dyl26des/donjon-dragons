@@ -95,7 +95,7 @@ Map.prototype.dessinerMap = function(context) {
        
        
         for(var i = 0, l = this.personnages.length ; i < l ; i++) {
-	this.personnages[i].dessinerPersonnage(context);
+	this.personnages[i].dessinerPersonnage(context,this);
         }
         
         
@@ -118,23 +118,24 @@ Map.prototype.dessinerMap = function(context) {
                             mPreCombat(context,mob);
                         }
                     break;
-                    case 1 : 
+                    case 1 :                         
                         if ((mob.y === this.personnages[0].y) && (mob.x > this.personnages[0].x))
                         {
                             mPreCombat(context,mob);
                         }
                     break;
                     case 2 : 
-                        if ((mob.x === this.personnages[0].x) && (mob.y > this.personnages[0].y))
+                         if ((mob.y === this.personnages[0].y) && (mob.x < this.personnages[0].x))
                         {
                             mPreCombat(context,mob);
                         }
                     break;
-                    case 3 : 
-                        if ((mob.y === this.personnages[0].y) && (mob.x < this.personnages[0].x))
+                    case 3 :
+                        if ((mob.x === this.personnages[0].x) && (mob.y > this.personnages[0].y))
                         {
                             mPreCombat(context,mob);
                         }
+                        
                     break;
                 }
             }

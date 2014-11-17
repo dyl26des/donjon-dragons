@@ -5,15 +5,16 @@ var DUREE_ANIMATION = 4;
 var DUREE_DEPLACEMENT = 12;
 var ctx;
 var isPreCombat=false;
+var animID;
 
 function mDeplacement (ctx) {
     
         
-        
+
 	canvas.width  = map.getLargeur() * 32;
 	canvas.height = map.getHauteur() * 32;
 	
-	setInterval(function() {
+	animID=setInterval(function() {
             map.dessinerMap(ctx);
         }, 40);
         
@@ -25,16 +26,16 @@ function mDeplacement (ctx) {
         
         switch(key) {
 	case 38 : case 122 : case 119 : case 90 : case 87 : // Flèche haut, z, w, Z, W
-		joueur.deplacer(3, map);
+		joueur.deplacer(3,map);
 		break;
 	case 40 : case 115 : case 83 : // Flèche bas, s, S
-		joueur.deplacer(0, map);
+		joueur.deplacer(0,map);
 		break;
 	case 37 : case 113 : case 97 : case 81 : case 65 : // Flèche gauche, q, a, Q, A
-		joueur.deplacer(1, map);
+		joueur.deplacer(1,map);
 		break;
 	case 39 : case 100 : case 68 : // Flèche droite, d, D
-		joueur.deplacer(2, map);
+		joueur.deplacer(2,map);
 		break;
 	default : 
 		//alert(key);
@@ -47,40 +48,23 @@ function mDeplacement (ctx) {
 }
 function mPreCombat (ctx,mob) {
     
-    isPreCombat= true; 
+        if (!isPreCombat){
+        isPreCombat= true; 
         
 	canvas.width  = map.getLargeur() * 32;
 	canvas.height = map.getHauteur() * 32;
 	
-	setInterval(function() {
-            map.dessinerMap(ctx);
-        }, 40);
+//	setInterval(function() {
+//            map.dessinerMap(ctx);
+//        }, 40);
         
         // Gestion du clavier
         window.onkeydown = function() {
             return false;
         };
-        if (mob.x === joueur.x)
-        {
-            while(  !(    (mob.y === (joueur.y - 1)) || (mob.y === (joueur.y+1)) )   )
-            {
-                if (mob.etatAnimation === -1 ) {mob.deplacer(mob.direction,map);}
-            }
-        }
-        else  
-        {
-            if (mob.y === joueur.y)
-            {
-                while(  !(    (mob.x === (joueur.x - 1)) || (mob.x === (joueur.x+1)) )   )
-                {
-                    if (mob.etatAnimation === -1 ) 
-                    {
-                        mob.deplacer(mob.direction,map);
-                    }
-                }
-            }
-        }
+        mob.agro(joueur,map);
         
+    }
     
 }
 

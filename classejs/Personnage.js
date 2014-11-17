@@ -8,7 +8,7 @@
 
 function Personnage (tile,x,y,direction) {
     this.x=x;   this.y=y;   this.direction=direction;
-    
+    this.inagro=false; this.agroxy=[0,0];
     // Chargement de l'image dans l'attribut image
 	this.image = new Image();
         this.etatAnimation = -1;
@@ -28,13 +28,22 @@ function Personnage (tile,x,y,direction) {
 
 /*******************************************************************************/
 
-Personnage.prototype.dessinerPersonnage = function(context) {
+Personnage.prototype.dessinerPersonnage = function(context,map) {
     var frame = 0; var precombat= false; // Numéro de l'image à prendre pour l'animation
     var decalageX = 0, decalageY = 0; // Décalage à appliquer à la position du personnage
     if(this.etatAnimation >= DUREE_DEPLACEMENT) {
 	// Si le déplacement a atteint ou dépassé le temps nécessaire pour s'effectuer, on le termine
 	this.etatAnimation = -1;
-        //on test si un mob vois le joueurs TODO
+        
+        if (this.inagro)
+        {
+            if (this.x === this.agroxy[0] && this.y === this.agroxy[1]){
+                this.inagro=false;
+            }   else
+            {
+                this.deplacer(this.direction,map);
+            }
+        }
         
         
         
@@ -108,8 +117,34 @@ Personnage.prototype.getCoordonneesAdjacentes = function(direction)  {
 	}
 	return coord;
 },
-	
-Personnage.prototype.deplacer = function(direction, map) {
+        
+Personnage.prototype.agro = function (persoagro,map) {
+    this.inagro = true;
+    if (this.x === persoagro.x )
+    {
+        if (this.y<persoagro.y)
+        {
+            this.agroxy = [persoagro.x,persoagro.y -1];
+        }
+        else
+        {
+            this.agroxy = [persoagro.x,persoagro.y +1];
+        }
+    }
+    if (this.y === persoagro.y )
+    {
+        if (this.x <persoagro.x)
+        {
+            this.agroxy = [persoagro.x -1,persoagro.y];
+        }
+        else
+        {
+            this.agroxy = [persoagro.x +1,persoagro.y];
+        }
+    }
+    this.deplacer(this.direction,map);
+};
+Personnage.prototype.deplacer = function(direction,map) {
 	// On ne peut pas se déplacer si un mouvement est déjà en cours !
         if(this.etatAnimation >= 0) {
             return false;
