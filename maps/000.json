@@ -1,5 +1,5 @@
 {
-    "tileset" : "tileset/mine.png",
+    "tileset" : "tileset/minegrille.png",
     "terrain" : [
 		[2, 2, 2, 2, 2, 2, 9, 10, 11,  2,  2,  2,  2,  2,  2],
 		[2, 2, 2, 2, 2, 2, 9, 10, 11,  2,  2,  2,  2,  2,  2],
