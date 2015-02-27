@@ -107,8 +107,11 @@ Map.prototype.dessinerMap = function(context) {
 		}
         }
         
-        if (!isPreCombat && this.personnages[0].etatAnimation===-1 ){
-            for (var i=1, l = this.personnages.length ; i<l;i++){
+        if (!isPreCombat && this.personnages[0].etatAnimation===-1 )//si pas d'aggro et mouvement terminé
+        {
+            var length = this.personnages.length;
+            for (var i=1, l = length; i<l;i++)
+            {
                 var mob = this.personnages[i];
 
                 switch  (mob.direction) {

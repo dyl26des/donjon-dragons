@@ -118,34 +118,36 @@ Personnage.prototype.getCoordonneesAdjacentes = function(direction)  {
 	return coord;
 },
         
+        
+ /* persoagro : personnage aggressé (joueur)
+  * this.agroxy : 
+  */      
 Personnage.prototype.agro = function (persoagro,map) {
     this.inagro = true;
     if (this.x === persoagro.x )
     {
-        if (this.y<persoagro.y)
+        if (this.y > persoagro.y)//l'ennemi est en dessou du personnage
         {
-            this.agroxy = [persoagro.x,persoagro.y--];
+            this.agroxy[0] = parseInt(persoagro.x);
+            this.agroxy[1] =  parseInt(persoagro.y)+1;
         }
-        else
+        else//l'ennemi est au dessu du personnage 
         {
-            this.agroxy[0] = persoagro.x;
-            this.agroxy[1] = persoagro.y++;
+            this.agroxy[0] =  parseInt(persoagro.x);
+            this.agroxy[1] =  parseInt(persoagro.y)-1;
         }
     }
     if (this.y === persoagro.y )
     {
-        if (this.x <persoagro.x)
+        if (this.x > persoagro.x)//l'ennemi est a gauche du personnage 
         {
-            this.agroxy[0] = persoagro.x-1;
-            this.agroxy[1] = persoagro.y;
+            this.agroxy[0] = parseInt(persoagro.x)+1;
+            this.agroxy[1] =  parseInt(persoagro.y);
         }
-        else
+        else//l'ennemi est a gauche du personnage
         {
-            tempx = persoagro.x;
-            tempx++;
-            this.agroxy[0] = tempx
-            ;
-            this.agroxy[1] = persoagro.y;
+            this.agroxy[0] =  parseInt(persoagro.x)-1;
+            this.agroxy[1] =  parseInt(persoagro.y);
         }
     }
     alert ( this.agroxy[0] +";" + this.agroxy[1] + "  && " + persoagro.x + ";" +persoagro.y);
