@@ -8,10 +8,9 @@
 
 function Personnage (tile,x,y,direction) {
     this.x=x;   this.y=y;   this.direction=direction;
-    this.inagro=false; this.agroxy=[0,0];
+    
     // Chargement de l'image dans l'attribut image
 	this.image = new Image();
-        this.etatAnimation = -1;
 	this.image.referenceDuPerso = this;
 	this.image.onload = function() {
 		if(!this.complete) 
@@ -28,76 +27,16 @@ function Personnage (tile,x,y,direction) {
 
 /*******************************************************************************/
 
-Personnage.prototype.dessinerPersonnage = function(context,map) {
-    var frame = 0; var precombat= false; // Numéro de l'image à prendre pour l'animation
-    var decalageX = 0, decalageY = 0; // Décalage à appliquer à la position du personnage
-    if(this.etatAnimation >= DUREE_DEPLACEMENT) {
-	// Si le déplacement a atteint ou dépassé le temps nécessaire pour s'effectuer, on le termine
-	this.etatAnimation = -1;
-        
-        if (this.inagro)
-        {
-            if (this.x === this.agroxy[0] && this.y === this.agroxy[1]){
-                this.inagro=false;
-            }   else
-            {
-                this.deplacer(this.direction,map);
-            }
-        }
-        
-        
-        
-    } else if(this.etatAnimation >= 0) {
-	// On calcule l'image (frame) de l'animation à afficher
-	frame = Math.floor(this.etatAnimation / DUREE_ANIMATION);
-	if(frame > 3) {
-		frame %= 4;
-	}
-	
-	// Nombre de pixels restant à parcourir entre les deux cases
-	var pixelsAParcourir = 32 - (32 * (this.etatAnimation / DUREE_DEPLACEMENT));
-	
-	// À partir de ce nombre, on définit le décalage en x et y.
-	// NOTE : Si vous connaissez une manière plus élégante que ces quatre conditions, je suis preneur
-	if(this.direction === 3) {
-		decalageY = pixelsAParcourir;
-	} else if(this.direction === 0) {
-		decalageY = -pixelsAParcourir;
-	} else if(this.direction === 1) {
-		decalageX = pixelsAParcourir;
-	} else if(this.direction === 2) {
-		decalageX = -pixelsAParcourir;
-        }
-	this.etatAnimation++;
-    }
-/*
- * Si aucune des deux conditions n'est vraie, c'est qu'on est immobile, 
- * donc il nous suffit de garder les valeurs 0 pour les variables 
- * frame, decalageX et decalageY
- */
+Personnage.prototype.dessinerPersonnage = function(context) {
     context.drawImage(
 	this.image, 
-	this.largeur * frame, this.direction * this.hauteur, // Point d'origine du rectangle source à prendre dans notre image
+	0, this.direction * this.hauteur, // Point d'origine du rectangle source à prendre dans notre image
 	this.largeur, this.hauteur, // Taille du rectangle source (c'est la taille du personnage)
-        // Point de destination (dépend de la taille du personnage)
-        (this.x * 32) - (this.largeur / 2) + 16 + decalageX, (this.y * 32) - this.hauteur + 24 + decalageY,
-	
+	(this.x * 32) - (this.largeur / 2) + 16, (this.y * 32) - this.hauteur + 24, // Point de destination (dépend de la taille du personnage)
 	this.largeur, this.hauteur // Taille du rectangle destination (c'est la taille du personnage)
     );
-    if (precombat) {precombat(context,mob);}
-};
 
-Personnage.prototype.repositionner = function (x,y,direction)   {
-    
-    this.x = x;
-    this.y = y;
-    if (0 <= direction >=3 ) {
-        this.direction= direction;
-    } else
-    {
-        this.direction = 0;
-    }
-};
+};	
 
 Personnage.prototype.getCoordonneesAdjacentes = function(direction)  {
 	var coord = {'x' : this.x, 'y' : this.y};
@@ -116,49 +55,11 @@ Personnage.prototype.getCoordonneesAdjacentes = function(direction)  {
 			break;
 	}
 	return coord;
-},
-        
-Personnage.prototype.agro = function (persoagro,map) {
-    this.inagro = true;
-    if (this.x === persoagro.x )
-    {
-        if (this.y<persoagro.y)
-        {
-            this.agroxy = [persoagro.x,persoagro.y--];
-        }
-        else
-        {
-            this.agroxy[0] = persoagro.x;
-            this.agroxy[1] = persoagro.y++;
-        }
-    }
-    if (this.y === persoagro.y )
-    {
-        if (this.x <persoagro.x)
-        {
-            this.agroxy[0] = persoagro.x-1;
-            this.agroxy[1] = persoagro.y;
-        }
-        else
-        {
-            tempx = persoagro.x;
-            tempx++;
-            this.agroxy[0] = tempx
-            ;
-            this.agroxy[1] = persoagro.y;
-        }
-    }
-    alert ( this.agroxy[0] +";" + this.agroxy[1] + "  && " + persoagro.x + ";" +persoagro.y);
-    this.deplacer(this.direction,map);
 };
-Personnage.prototype.deplacer = function(direction,map) {
-	// On ne peut pas se déplacer si un mouvement est déjà en cours !
-        if(this.etatAnimation >= 0) {
-            return false;
-        }
-        // On change la direction du personnage
+	
+Personnage.prototype.deplacer = function(direction, map) {
+	// On change la direction du personnage
 	this.direction = direction;
-        
 		
 	// On vérifie que la case demandée est bien située dans la carte
 	var prochaineCase = this.getCoordonneesAdjacentes(direction);
@@ -167,26 +68,7 @@ Personnage.prototype.deplacer = function(direction,map) {
 		// Ça ne coute pas cher et ca peut toujours servir
 		return false;
 	}
-        else 
-        {     
-                terrain2 = map.getTerrain2(prochaineCase.x,prochaineCase.y);
-                
-                if (-3 >= terrain2 || terrain2 <= -1) {
-                    map.chargerMap(nextMap(terrain2));
-                    return false;
-                }
-                
-                switch(terrain2) 
-                {
-                    //cas 0 on ne fait rien, on peut se déplacer
-                    case 0 : 
-                    break;
-                    default : return false; break;
-                }                                              
-        }	
-        
-        // On commence l'animation
-        this.etatAnimation = 1;
+		
 	// On effectue le déplacement
 	this.x = prochaineCase.x;
 	this.y = prochaineCase.y;
