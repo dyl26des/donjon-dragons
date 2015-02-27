@@ -184,7 +184,19 @@ Personnage.prototype.deplacer = function(direction,map) {
                     case 0 : 
                     break;
                     default : return false; break;
-                }                                              
+                }
+                
+                
+                   
+                var nbperso = map.personnages.length;
+                for (var i= 0; i<nbperso;i++) //pour chaque personnage sur la map on vérifie la collision.
+                {
+                    if (map.personnages[i].x === prochaineCase.x && map.personnages[i].y === prochaineCase.y)
+                    {
+                        return false;
+                    }
+                }
+                
         }	
         
         // On commence l'animation
