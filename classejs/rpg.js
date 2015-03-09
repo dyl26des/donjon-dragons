@@ -6,7 +6,7 @@ var DUREE_DEPLACEMENT = 12;
 var ctx;
 var isPreCombat=false;
 var animID;
-
+var openMenu = false;
 function mDeplacement (ctx) {
     
         
@@ -23,9 +23,9 @@ function mDeplacement (ctx) {
 	
         var e = event || window.event;
         var key = e.which || e.keyCode;
-        
         switch(key) {
-	case 38 : case 122 : case 119 : case 90 : case 87 : // Flèche haut, z, w, Z, W
+	//case 38 a 39, gestion des deplacement
+        case 38 : case 122 : case 119 : case 90 : case 87 : // Flèche haut, z, w, Z, W
 		joueur.deplacer(3,map);
 		break;
 	case 40 : case 115 : case 83 : // Flèche bas, s, S
@@ -37,6 +37,20 @@ function mDeplacement (ctx) {
 	case 39 : case 100 : case 68 : // Flèche droite, d, D
 		joueur.deplacer(2,map);
 		break;
+        //gestions des menu
+        case 27 ://menu principal
+            if(openMenu === false)
+            {
+                document.getElementById("menu").style.zIndex = 2;
+                openMenu = true;   
+            } 
+            else
+            {
+                document.getElementById("menu").style.zIndex = 0;
+                openMenu = false;
+            }
+            break;
+                
 	default : 
 		//alert(key);
 		// Si la touche ne nous sert pas, nous n'avons aucune raison de bloquer son comportement normal.
@@ -74,3 +88,4 @@ window.onload = function() {
         mDeplacement (ctx);
 	
 };
+

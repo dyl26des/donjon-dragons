@@ -1,6 +1,5 @@
 function Map(nom) {
     this.personnages = new Array();
-    
     this.chargerMap(nom);
     
 }

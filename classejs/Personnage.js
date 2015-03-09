@@ -84,7 +84,9 @@ Personnage.prototype.dessinerPersonnage = function(context,map) {
 	
 	this.largeur, this.hauteur // Taille du rectangle destination (c'est la taille du personnage)
     );
-    if (precombat) {precombat(context,mob);}
+    if (precombat) {
+        precombat(context,mob);
+    }
 };
 
 Personnage.prototype.repositionner = function (x,y,direction)   {
