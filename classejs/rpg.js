@@ -1,5 +1,5 @@
 var ts = new Tileset("tileset/mine.png");
-var joueur = new Personnage("Adam.png",0,0,0);
+var joueur = new Personnage("Adam.png",0,0,0,true);
 var map = new Map("000",joueur);
 var DUREE_ANIMATION = 4;
 var DUREE_DEPLACEMENT = 12;
@@ -81,6 +81,9 @@ function mPreCombat (ctx,mob) {
     }
     
 }
+
+
+
 
 window.onload = function() {
 	var canvas = document.getElementById('canvas');

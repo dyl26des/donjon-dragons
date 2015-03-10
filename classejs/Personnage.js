@@ -8,7 +8,7 @@
 
 function Personnage (tile,x,y,direction) {
     this.x=x;   this.y=y;   this.direction=direction;
-    this.inagro=false; this.agroxy=[0,0];
+    this.inagro=false; this.agroxy=[0,0]; this.isPlayer=false;
     // Chargement de l'image dans l'attribut image
 	this.image = new Image();
         this.etatAnimation = -1;
@@ -25,6 +25,27 @@ function Personnage (tile,x,y,direction) {
 
 }
 
+/*
+ * @param: isPlayer = constante pour savoir si le personnage est joueur ou non.
+ */
+function Personnage (tile,x,y,direction,isPlayer) {
+    this.x=x;   this.y=y;   this.direction=direction;
+    this.inagro=false; this.agroxy=[0,0]; this.isPlayer=isPlayer;
+    // Chargement de l'image dans l'attribut image
+	this.image = new Image();
+        this.etatAnimation = -1;
+	this.image.referenceDuPerso = this;
+	this.image.onload = function() {
+		if(!this.complete) 
+			throw "Erreur de chargement du sprite nommé \"" + url + "\".";
+		
+		// Taille du personnage
+		this.referenceDuPerso.largeur = this.width / 4;
+		this.referenceDuPerso.hauteur = this.height / 4;
+	};
+	this.image.src = "tileset/" + tile;
+
+}
 
 /*******************************************************************************/
 
@@ -152,7 +173,7 @@ Personnage.prototype.agro = function (persoagro,map) {
             this.agroxy[1] =  parseInt(persoagro.y);
         }
     }
-    alert ( this.agroxy[0] +";" + this.agroxy[1] + "  && " + persoagro.x + ";" +persoagro.y);
+//    alert ( this.agroxy[0] +";" + this.agroxy[1] + "  && " + persoagro.x + ";" +persoagro.y);
     this.deplacer(this.direction,map);
 };
 Personnage.prototype.deplacer = function(direction,map) {
@@ -166,6 +187,7 @@ Personnage.prototype.deplacer = function(direction,map) {
 		
 	// On vérifie que la case demandée est bien située dans la carte
 	var prochaineCase = this.getCoordonneesAdjacentes(direction);
+
 	if(prochaineCase.x < 0 || prochaineCase.y < 0 || prochaineCase.x >= map.getLargeur() || prochaineCase.y >= map.getHauteur()) {
 		// On retourne un booléen indiquant que le déplacement ne s'est pas fait, 
 		// Ça ne coute pas cher et ca peut toujours servir
@@ -175,7 +197,8 @@ Personnage.prototype.deplacer = function(direction,map) {
         {     
                 terrain2 = map.getTerrain2(prochaineCase.x,prochaineCase.y);
                 
-                if (-3 >= terrain2 || terrain2 <= -1) {
+                if (-3 >= terrain2 || terrain2 <= -1 && this.isPlayer) 
+                {
                     map.chargerMap(nextMap(terrain2));
                     return false;
                 }
@@ -204,8 +227,18 @@ Personnage.prototype.deplacer = function(direction,map) {
         // On commence l'animation
         this.etatAnimation = 1;
 	// On effectue le déplacement
+        
 	this.x = prochaineCase.x;
 	this.y = prochaineCase.y;
+        if(this.isPlayer){
+            logs(1,"player.x",this.x);
+            logs(2,"player.y",this.y);
+        }else
+        {
+            logs(3,"mobagro.x",this.x);
+            logs(4,"mobagro.y",this.y);
+        }
+        
 		
 	return true;
 };
