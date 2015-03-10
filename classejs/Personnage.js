@@ -50,21 +50,18 @@ function Personnage (tile,x,y,direction,isPlayer) {
 /*******************************************************************************/
 
 Personnage.prototype.dessinerPersonnage = function(context,map) {
-    var frame = 0; var precombat= false; // Numéro de l'image à prendre pour l'animation
+    var frame = 0; // Numéro de l'image à prendre pour l'animation
     var decalageX = 0, decalageY = 0; // Décalage à appliquer à la position du personnage
-    if(this.etatAnimation >= DUREE_DEPLACEMENT) {
+    
+    if (this.x === this.agroxy[0] && this.y === this.agroxy[1] && this.inagro) this.inagro=false;
+    
+    if(this.etatAnimation >= DUREE_DEPLACEMENT) 
+    {
 	// Si le déplacement a atteint ou dépassé le temps nécessaire pour s'effectuer, on le termine
 	this.etatAnimation = -1;
+        logs(5,"inagro",this.inagro);
+         logs(6,"etatanim",this.etatAnimation);
         
-        if (this.inagro)
-        {
-            if (this.x === this.agroxy[0] && this.y === this.agroxy[1]){
-                this.inagro=false;
-            }   else
-            {
-                this.deplacer(this.direction,map);
-            }
-        }
         
         
         
@@ -105,9 +102,10 @@ Personnage.prototype.dessinerPersonnage = function(context,map) {
 	
 	this.largeur, this.hauteur // Taille du rectangle destination (c'est la taille du personnage)
     );
-    if (precombat) {
-        precombat(context,mob);
-    }
+    if (this.inagro)
+        {               
+            this.deplacer(this.direction,map);
+        }
 };
 
 Personnage.prototype.repositionner = function (x,y,direction)   {
@@ -230,6 +228,7 @@ Personnage.prototype.deplacer = function(direction,map) {
         
 	this.x = prochaineCase.x;
 	this.y = prochaineCase.y;
+        
         if(this.isPlayer){
             logs(1,"player.x",this.x);
             logs(2,"player.y",this.y);

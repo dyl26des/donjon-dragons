@@ -20,8 +20,9 @@ function verifLogs(valeur,index,array){
     return !(valeur.getId() === logTemp.getId()) ;
 }
 function affichageLog(valeur,index,array){
-    if (valeur.getId() === logTemp.getId()) array[index]=logTemp;alert (logTemp.affiche());
-    baliseLog.innerHTML+= valeur.affiche()+"<br>";
+    if (valeur.getId() === logTemp.getId()) {array[index]=logTemp;}
+//    alert (logTemp.getId()+" " + logTemp.affiche()+" "+valeur.getId()+" "+valeur.affiche()+" comp: "+(valeur.getId() === logTemp.getId()));
+    baliseLog.innerHTML+= array[index].affiche()+"<br>";
 }
 function logs(id,nom,valeur)
 {
