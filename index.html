@@ -4,12 +4,24 @@
         <title>Donjons et Dragons</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
         
     </head>
     <body>
         <div id="jeux" style="position:absolute;top:0px;left: 0px;">
-        <canvas id="canvas" width="1000" height="500" style="border:1px solid black; z-index:1; position: absolute; float:left;"></canvas>
-        <div id="menu" style="z-index: 0;position: relative; left: 0px;right:0px;">lalalalalalala</div>
+            
+        <canvas id="canvas" width="1000" height="500" style="border:1px solid black; z-index:2; position: absolute; float:left;"></canvas>
+        
+        <div id="menu" style="z-index: 1;position: relative; left: 0px;right:0px;">
+            lalalalalalala
+        </div>
+        
+        <div id="combat">
+            <p id="texteCombat"></p>
+            <button id="attaqueButton">Attaque</button>
+            <button id="Button">?????</button>
+        </div>
+        
         </div>
         <p id="logs" style='display:block;float: right '>Logs</p>
         <script type="text/javascript" src="classejs/Logs.js"></script>
@@ -18,6 +30,7 @@
         <script type="text/javascript" src="classejs/Personnage.js"></script>
         <script type="text/javascript" src="classejs/Map.js"></script>
         <script type="text/javascript" src="classejs/NextMap.js"></script>
+        <script type="text/javascript" src="classejs/combat.js"></script>
        <script type="text/javascript" src="classejs/Rpg.js"></script>
     </body>
 </html>

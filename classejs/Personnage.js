@@ -171,7 +171,6 @@ Personnage.prototype.agro = function (persoagro,map) {
             this.agroxy[1] =  parseInt(persoagro.y);
         }
     }
-    alert(this.inagro);
     this.deplacer(this.direction,map);
 };
 Personnage.prototype.deplacer = function(direction,map) {

@@ -1,9 +1,9 @@
 var ts = new Tileset("tileset/mine.png");
 var joueur = new Personnage("Adam.png",0,0,0,true);
-var map = new Map("000",joueur);
+var map = new Map("001",joueur);
 var inventaire= new Array();
-inventaire[0]=new Equipement("Caisse en carton","armure",1,1,0);
-inventaire[1]=new Equipement("Couteau a beurre","arme",0,1,3);
+//inventaire[0]=new Equipement("Caisse en carton","armure",1,1,0);
+//inventaire[1]=new Equipement("Couteau a beurre","arme",0,1,3);
 var DUREE_ANIMATION = 4;
 var DUREE_DEPLACEMENT = 12;
 var ctx;
@@ -44,12 +44,12 @@ function mDeplacement (ctx) {
         case 27 ://menu principal
             if(openMenu === false)
             {
-                document.getElementById("menu").style.zIndex = 2;
+                document.getElementById("menu").style.zIndex = 4;
                 openMenu = true;   
             } 
             else
             {
-                document.getElementById("menu").style.zIndex = 0;
+                document.getElementById("menu").style.zIndex = 1;
                 openMenu = false;
             }
             break;
@@ -76,10 +76,13 @@ function mPreCombat (ctx,mob) {
 //        }, 40);
         
         // Gestion du clavier
+        
         window.onkeydown = function() {
             return false;
         };
         mob.agro(joueur,map);
+        
+        setTimeout("combat()",5000);
         
     }
     

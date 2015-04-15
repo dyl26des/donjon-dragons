@@ -1,0 +1,47 @@
+/* 
+    Created on : 15-avr.-2015, 11:04:43
+    Author     : Exo
+*/
+
+#combat
+{
+    z-index: 0;
+    background-color: black;
+    background-image: url("tileset/cave.png");
+    display: none;
+    position: relative;
+    left: 0px;
+    top: -34px;
+    height: 600px;
+    width: 800px;
+    
+}
+
+#texteCombat
+{
+    background-color: white;
+    position: relative;
+    left: 50px;
+    top: 400px;
+    height: 50px;
+    width: 700px;
+}
+
+button
+{
+    background-color: yellow;
+    text-decoration-color: red;
+}
+
+#attaqueButton
+{
+    position: relative;
+    top: 500px;
+    left: 150px;
+}
+#Button
+{
+    position: relative;
+    top: 500px;
+    left: 450px;    
+}
