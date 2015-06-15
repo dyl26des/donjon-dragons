@@ -5,25 +5,27 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
+        <script src="jquery.js"></script>
         
     </head>
     <body>
         <div id="jeux" style="position:absolute;top:0px;left: 0px;">
             
-        <canvas id="canvas" width="1000" height="500" style="border:1px solid black; z-index:2; position: absolute; float:left;"></canvas>
+            <canvas id="canvas" width="1000" height="500"></canvas>
         
-        <div id="menu" style="z-index: 1;position: relative; left: 0px;right:0px;">
+            <div id="menu">
             lalalalalalala
-        </div>
+            </div>
         
-        <div id="combat">
-            <p id="texteCombat"></p>
+            <div id="combat">
+            <div id="texteCombat">bonjour je ne marche pas</div>
             <button id="attaqueButton">Attaque</button>
-            <button id="Button">?????</button>
-        </div>
+            <button id="fuirButton">?????</button>
+            </div>
         
         </div>
         <p id="logs" style='display:block;float: right '>Logs</p>
+        <script type="text/javascript" src="classejs/Fenetres.js"></script>
         <script type="text/javascript" src="classejs/Logs.js"></script>
         <script type="text/javascript" src="classejs/Ajaxmlhttpreq.js"></script>
         <script type="text/javascript" src="classejs/Tileset.js"></script>

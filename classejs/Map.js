@@ -11,6 +11,7 @@ function Map(nom, joueur) {
 }
 
 
+
 Map.prototype.chargerMap = function (nom){
     // Création de l'objet XmlHttpRequest
 	var xhr = getXMLHttpRequest();
@@ -51,6 +52,10 @@ Map.prototype.chargerMap = function (nom){
      */
 };
 // Pour récupérer la taille (en tiles) de la carte
+Map.prototype.getPersos = function() {
+        return this.personnages;
+};
+
 Map.prototype.getHauteur = function() {
 	return this.terrain0.length;
 };
@@ -66,6 +71,7 @@ Map.prototype.getTerrain2 = function( x, y){
 Map.prototype.addPersonnage = function(perso) {
 	this.personnages.push(perso);
 };
+
 
 Map.prototype.dessinerMap = function(context) {
 	for(var i = 0, l = this.terrain0.length; i < l ; i++) {

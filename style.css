@@ -1,30 +1,48 @@
-/* 
-    Created on : 15-avr.-2015, 11:04:43
-    Author     : Exo
-*/
+body
+{
+    background-image: url("tileset/main screen.jpg");
+    background-size: 100% auto;
+}
+#canvas
+{
+    position: absolute;
+    float: left;
+    top: 5em;
+    left:27.5em;
+    border: black solid 3px;
+}
+#menu
+{
+    position: absolute;
+    top: 5em;
+    left: 27.5em;
+    height: 31em;
+    width: 25em;
+    background-image: url("tileset/menu screen.png");
+    text-align: center;
+}
 
 #combat
 {
-    z-index: 0;
-    background-color: black;
     background-image: url("tileset/cave.png");
-    display: none;
-    position: relative;
-    left: 0px;
-    top: -34px;
-    height: 600px;
-    width: 800px;
+    position: absolute;
+    left: 23em;
+    top: 5em;
+    height: 30.5em;
+    width: 40em;
+    border: purple solid 2px;
     
 }
 
 #texteCombat
 {
-    background-color: white;
+    background-color: grey;
     position: relative;
-    left: 50px;
-    top: 400px;
-    height: 50px;
-    width: 700px;
+    left: 5em;
+    top: 20em;
+    height: 3em;
+    width: 30em;
+    border: purple solid 1px;
 }
 
 button
@@ -36,12 +54,12 @@ button
 #attaqueButton
 {
     position: relative;
-    top: 500px;
-    left: 150px;
+    top: 27em;
+    left: 10em;
 }
-#Button
+#fuirButton
 {
     position: relative;
-    top: 500px;
-    left: 450px;    
+    top: 27em;
+    left: 30em;    
 }

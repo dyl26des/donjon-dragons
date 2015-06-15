@@ -9,7 +9,6 @@ var DUREE_DEPLACEMENT = 12;
 var ctx;
 var isPreCombat=false;
 var animID;
-var openMenu = false;
 function mDeplacement (ctx) {
     
         
@@ -41,20 +40,7 @@ function mDeplacement (ctx) {
 		joueur.deplacer(2,map);
 		break;
         //gestions des menu
-        case 27 ://menu principal
-            if(openMenu === false)
-            {
-                document.getElementById("menu").style.zIndex = 4;
-                openMenu = true;   
-            } 
-            else
-            {
-                document.getElementById("menu").style.zIndex = 1;
-                openMenu = false;
-            }
-            break;
-                
-	default : 
+        default : 
 		//alert(key);
 		// Si la touche ne nous sert pas, nous n'avons aucune raison de bloquer son comportement normal.
 		return true;
@@ -81,9 +67,13 @@ function mPreCombat (ctx,mob) {
             return false;
         };
         mob.agro(joueur,map);
-        
-        setTimeout("combat()",5000);
-        
+        //map.getPersos().splice(map.getPersos().indexOf(mob),1);
+        //setTimeout(map.getPersos().splice(map.getPersos().indexOf(mob),1),10000);
+        setTimeout("combat()",1000);
+        setTimeout(map.getPersos().splice(map.getPersos().indexOf(mob),1),1000);
+        window.onkeydown = function() {
+            return true;
+        };
     }
     
 }
