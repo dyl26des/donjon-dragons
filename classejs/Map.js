@@ -13,6 +13,7 @@ function Map(nom, joueur) {
 
 
 Map.prototype.chargerMap = function (nom){
+    var canvas = document.getElementById('canvas');
     // Création de l'objet XmlHttpRequest
 	var xhr = getXMLHttpRequest();
 
@@ -45,6 +46,8 @@ Map.prototype.chargerMap = function (nom){
         var persopnj = new Personnage (pnj[0],pnj[1],pnj[2], pnj[3]);
         this.addPersonnage(persopnj);
     }
+    canvas.width  = this.getLargeur() * 32;
+    canvas.height = this.getHauteur() * 32;
     /* terrain0 = sol
      * terrain1 = objet au sol
      * terrain2 = mur et collision
