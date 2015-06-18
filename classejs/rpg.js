@@ -1,6 +1,6 @@
 var ts = new Tileset("tileset/mine.png");
 var joueur = new Personnage("Adam.png",0,0,0,true);
-var map = new Map("001",joueur);
+var map = new Map("002",joueur);
 var inventaire= new Array();
 //inventaire[0]=new Equipement("Caisse en carton","armure",1,1,0);
 //inventaire[1]=new Equipement("Couteau a beurre","arme",0,1,3);

@@ -35,12 +35,17 @@ $(document).stop().keyup(function(e) {
     {
           closemenu();  
     }
-    
-$('#Resume').stop().click()(function(){
-    alert('lalalalala');
+});
+ 
+$('#Resume').stop().click(function(){
     closemenu();  
-});    
-    
+});  
+
+$('#Inventory').stop().click(function(){  
+});
+  
+$('#Restart').stop().click(function(){
+    document.location.reload(true);
 });
 
 
