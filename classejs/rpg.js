@@ -73,7 +73,7 @@ function mPreCombat (ctx,mob) {
         {
             combat(mob,joueur);
             map.getPersos().splice(map.getPersos().indexOf(mob),1);
-            clearInterval(animID);
+            
         }
         
         setTimeout(function(){popcombat();},2000);

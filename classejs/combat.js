@@ -6,9 +6,9 @@ function attaque(attaquant, defenseur)
     $('#texteCombat').append("<br/> " +attaquant.nom + "attack <br/>");
     var dmgfait = attaquant.dmg * (1.5/defenseur.armor);
     $('#texteCombat').append(attaquant.nom + " inflige " +dmgfait+"dmg a " + defenseur.nom+"<br/>");
-    if ((defenseur.vie - dmgfait) <= 0){
-        
-        
+    
+    if ((defenseur.vie - dmgfait) <= 0)
+    {
             $('#pvennemi').html("0");
             alert("le " + defenseur.nom + " a subi trop de dommage pour <br/>\
     survivre");
