@@ -19,8 +19,19 @@ function attaque(attaquant, defenseur)
     {   
         defenseur.vie -= dmgfait;
         $('#pvennemy').html(defenseur.vie);
+        
+        //ataque de l'ennemi
         dmgfait = defenseur.dmg * (1.5/attaquant.armor);
-        if ((player.vie - dmgfait)<=0)
+        $('#texteCombat').append(defenseur.nom + "ataque infligeant " +dmgfait+"dmg a " + attaquant.nom);
+
+        if ((player.vie - dmgfait)<=0) {
+            $('#pvjoueur').html("0");
+            alert('le joueur est mort (0pv) vous avez perdu la parite !');
+            fincombat();
+        }else{
+            player.vie-=dmgfait;
+            $('#pvjoueur').html(player.vie);
+        }
     }
 }
 function fincombat()
