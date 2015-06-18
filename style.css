@@ -57,7 +57,9 @@ body
 }
 #Joueur
 {
-    background-color: white;
+    
+    background-image: url("tileset/adampics.gif");
+    background-size: 10em 13em;
     position: absolute;
     top : 5em;
     left: 2em;
@@ -66,7 +68,8 @@ body
 }
 #Ennemi
 {
-    background-color: white;
+    background-image: url("tileset/goblinpics.gif") ;
+    background-size: 10em 13em;
     position: absolute;
     top: 2em;
     left: 28em;
