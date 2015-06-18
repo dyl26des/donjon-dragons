@@ -55,6 +55,56 @@ body
     border: purple solid 2px;
     
 }
+#Joueur
+{
+    background-color: white;
+    position: absolute;
+    top : 5em;
+    left: 2em;
+    width: 10em;
+    height: 13em;
+}
+#Ennemi
+{
+    background-color: white;
+    position: absolute;
+    top: 2em;
+    left: 28em;
+    width: 10em;
+    height: 13em;
+    border: solid black 1px;
+}
+
+.info
+{
+    position: absolute;
+    height: 1em;
+    width: 4em;
+    background-color: lightgray;
+    border: solid black 1px;
+}
+
+#nomjoueur
+{
+    top: 10em;
+    left: 4em;
+}
+#pvjoueur
+{
+    top: 11.5em;
+    left: 5em;
+}
+
+#nomennemi
+{
+    top: 10em;
+    left: 4em;
+}
+#pvennemi
+{
+    top: 11.5em;
+    left: 5em;
+}
 
 #texteCombat
 {
