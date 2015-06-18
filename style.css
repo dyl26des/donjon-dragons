@@ -113,10 +113,10 @@ body
 {
     background-color: grey;
     position: relative;
-    left: 5em;
+    left: 20em;
     top: 20em;
-    height: 3em;
-    width: 30em;
+    height: 10em;
+    width: 19em;
     border: purple solid 1px;
     overflow: scroll;
 }
@@ -129,13 +129,13 @@ button
 
 #attaqueButton
 {
-    position: relative;
-    top: 27em;
+    position: absolute;
+    top: 25em;
     left: 10em;
 }
 #fuirButton
 {
-    position: relative;
-    top: 27em;
-    left: 30em;    
+    position: absolute;
+    top: 30em;
+    left: 10em;    
 }
