@@ -1,6 +1,14 @@
 var player ;
 var enemy;
 var ctx;
+
+$('#attaqueButton' ).stop().click(function() {
+           attaque(player,enemy);
+    });
+   $('#fuirButton' ).stop().click(function() {
+           fuir();
+    });
+    
 function attaque(attaquant, defenseur)
 {
     $('#texteCombat').append("<br/> " +attaquant.nom + "attack <br/>");
@@ -111,12 +119,7 @@ function fincombat()
    $('#canvas').stop().hide();
    $('#combat').stop().show();
    $('#texteCombat').append("un "+ enemy.nom +" sauvage apparait. <br/>");  
-   $('#attaqueButton' ).stop().click(function() {
-           attaque(player,enemy);
-    });
-   $('#fuirButton' ).stop().click(function() {
-           fuir();
-    });
+   
 }
 
 
