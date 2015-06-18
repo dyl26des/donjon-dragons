@@ -65,6 +65,7 @@ body
     height: 3em;
     width: 30em;
     border: purple solid 1px;
+    overflow: scroll;
 }
 
 button
