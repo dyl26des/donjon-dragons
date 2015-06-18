@@ -1,32 +1,45 @@
 
-function character (vie,armure,degats)
-{
-    this.vie = vie;
-    this.degats = degats;
-    this.armure = armure;
-}
-var adam = new character (10,5,5);
-var gobelin = new character (5,2,2);
 
-function attaque()
+var player ;
+var ennemy;
+var ctx;
+function attaque(attaquant, defenseur)
 {
-    $('#texteCombat').html("Adam attack");
+    $('#texteCombat').append(attaquant.nom + "attack");
+    var dmgfait = attaquant.dmg * (1.5/defenseur.armor);
+    $('#texteCombat').append(attaquant.nom + " inflige " +dmgfait+"dmg a " + defenseur.nom);
+    if ((defenseur.vie - dmgfait) <= 0){
+        
+        
+            $('#pvennemy').html("0");
+            alert("le " + defenseur.nom + " a subi trop de dommage pour \n\
+    survivre");
+        fincombat();
+    }else
+    {   
+        defenseur.vie -= dmgfait;
+        $('#pvennemy').html(defenseur.vie);
+        
+    }
 }
-function fuir()
+function fincombat()
 {
     isPreCombat = false;
-    alert(isPreCombat+' '+window.onkeydown());
-    //map.getPersos().splice(map.getPersos().indexOf(mob),1);
     $('#combat').stop().hide();
     $('#canvas').stop().show();
+    mDeplacement (ctx);
  }
-function combat()
+ 
+    function combat(mob,joueur,context)
 {
+   player = joueur;
+   ennemy = mob;
+   ctx= context;
    $('#canvas').stop().hide();
    $('#combat').stop().show();
-   $('#texteCombat').html("a wild kevin appears.");  
+   $('#texteCombat').append("un "+ ennemy.nom +" sauvage apparait.");  
    $('#attaqueButton' ).stop().click(function() {
-           attaque();
+           attaque(player,ennemy);
     });
    $('#fuirButton' ).stop().click(function() {
            fuir();
