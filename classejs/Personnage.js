@@ -219,6 +219,18 @@ Personnage.prototype.deplacer = function(direction,map) {
                     //cas 0 on ne fait rien, on peut se déplacer
                     case 0 : 
                     break;
+                    case 180:
+                        if(this.isPlayer)
+                        {   
+                            this.vie -=1;
+                            alert('vous avez perdu 1 point de vie !');
+                            if(this.vie <= 0)
+                            {
+                                alert('vous êtes mort sur un piège');
+                                document.location.reload(true);
+                            }
+                        }
+                    break;
                     default : return false; break;
                 }
                 
