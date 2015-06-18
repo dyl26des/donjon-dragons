@@ -11,15 +11,14 @@ $('#attaqueButton' ).stop().click(function() {
     
 function attaque(attaquant, defenseur)
 {
-    $('#texteCombat').append("<br/> " +attaquant.nom + "attack <br/>");
+    $('#texteCombat').append("<br> " +attaquant.nom + "attack <br>");
     var dmgfait = attaquant.dmg * (1.5/defenseur.armor);
-    $('#texteCombat').append(attaquant.nom + " inflige " +dmgfait+"dmg a " + defenseur.nom+"<br/>");
+    $('#texteCombat').append(attaquant.nom + " inflige " +dmgfait+"dmg a " + defenseur.nom+"<br>");
     
     if ((defenseur.vie - dmgfait) <= 0)
     {
             $('#pvennemi').html("0");
-            alert("le " + defenseur.nom + " a subi trop de dommage pour <br/>\
-    survivre");
+            alert("le " + defenseur.nom + " a subi trop de dommage pour \n survivre");
             if (Math.random()<0.3 && player.isPlayer) //loot d'objet
             {
                 var nomitem;var valeuritem;
@@ -62,7 +61,7 @@ function attaque(attaquant, defenseur)
         
         //ataque de l'ennemi
         dmgfait = enemy.dmg * (1.5/player.armor);
-        $('#texteCombat').append(defenseur.nom + "ataque infligeant " +dmgfait+"dmg a " + attaquant.nom+"<br/>");
+        $('#texteCombat').append(defenseur.nom + "ataque infligeant " +dmgfait+"dmg a " + attaquant.nom+"<br>");
 
         if ((player.vie - dmgfait)<=0) {
             $('#pvjoueur').html("0");
@@ -95,7 +94,7 @@ function fincombat()
         alert("vous n'avez pas couru assez vite!");
         
          var dmgfait = enemy.dmg * (1.5/player.armor);
-        $('#texteCombat').append(enemy.nom + "ataque infligeant " +dmgfait+"dmg a " + player.nom +"<br/>");
+        $('#texteCombat').append(enemy.nom + "ataque infligeant " +dmgfait+"dmg a " + player.nom +"<br>");
 
         if ((player.vie - dmgfait)<=0) {
             $('#pvjoueur').html("0");
@@ -118,7 +117,7 @@ function fincombat()
    $('#pvjoueur').html(player.vie);
    $('#canvas').stop().hide();
    $('#combat').stop().show();
-   $('#texteCombat').append("un "+ enemy.nom +" sauvage apparait. <br/>");  
+   $('#texteCombat').append("un "+ enemy.nom +" sauvage apparait. <br>");  
    
 }
 

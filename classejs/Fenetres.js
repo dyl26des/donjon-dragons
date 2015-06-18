@@ -2,7 +2,11 @@ var x;
 $('#canvas').hide("slow");
 $('#menu').hide("slow");
 $('#combat').hide("slow");
+$('.stats').stop().hide("slow");
+$('#Retour').stop().hide("slow");
 $('#canvas').show("slow");
+
+    
 
 function openmenu()
 {
@@ -17,6 +21,7 @@ function openmenu()
                 $('#canvas').stop().hide("slow");
             }
             $('#menu').stop().show("slow");
+            $('#Retour').stop().hide("slow");
 }
 
 function closemenu()
@@ -42,13 +47,23 @@ $('#Resume').stop().click(function(){
 });  
 
 $('#Inventory').stop().click(function(){  
+    $('.MenuButton').stop().hide("slow");
+    $('#vie').html(''+ joueur.vie);
+    $('#attaque').html(''+ joueur.dmg);
+    $('#defense').html(''+ joueur.armor);
+    $('#Retour').stop().show("slow");
+    $('.stats').stop().show("slow");
 });
   
 $('#Restart').stop().click(function(){
     document.location.reload(true);
 });
 
-
+$('#Retour').stop().click(function(){
+    $('.stats').stop().hide("slow");
+    $('.MenuButton').stop().show("slow");
+    $('#Retour').stop().hide("slow");
+});
     
 
 

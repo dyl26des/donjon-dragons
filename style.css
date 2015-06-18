@@ -44,6 +44,39 @@ body
     top: 28em;
 }
 
+.stats
+{
+    position: absolute;
+    background-color: rosybrown;
+    border: solid black 1px;
+    left: 7.5em;
+    width: 10em;
+    height: 3em;
+}
+
+#vie
+{
+    top: 6em;  
+}
+#attaque
+{
+    top: 12em;
+}
+#defense
+{
+    top: 18em;
+}
+#Retour
+{
+    background-color: rosybrown;
+    border: solid black 1px;
+    position: absolute;
+    left: 10.5em;
+    top: 28em;
+    width: 10em;
+    height: 3em;
+}
+
 #combat
 {
     background-image: url("tileset/cave.png");
