@@ -3,16 +3,16 @@ var enemy;
 var ctx;
 function attaque(attaquant, defenseur)
 {
-    $('#texteCombat').append("\n " +attaquant.nom + "attack \n");
+    $('#texteCombat').append("<br/> " +attaquant.nom + "attack <br/>");
     var dmgfait = attaquant.dmg * (1.5/defenseur.armor);
-    $('#texteCombat').append(attaquant.nom + " inflige " +dmgfait+"dmg a " + defenseur.nom+"\n");
+    $('#texteCombat').append(attaquant.nom + " inflige " +dmgfait+"dmg a " + defenseur.nom+"<br/>");
     if ((defenseur.vie - dmgfait) <= 0){
         
         
             $('#pvennemi').html("0");
-            alert("le " + defenseur.nom + " a subi trop de dommage pour \n\
+            alert("le " + defenseur.nom + " a subi trop de dommage pour <br/>\
     survivre");
-            if (Math.random()<0.3) //loot d'objet
+            if (Math.random()<0.3 && player.isPlayer) //loot d'objet
             {
                 var nomitem;var valeuritem;
                 var typeitem= Math.floor(Math.random()*5);
@@ -43,6 +43,7 @@ function attaque(attaquant, defenseur)
                     
             alert("bravo ! vous avez looter un(e) magnifique : " + nomitem);
             player.addItem(new Item(nomitem,typeitem,valeuritem));
+            console.log(player.isPlayer);
             }
             
         fincombat();
@@ -52,8 +53,8 @@ function attaque(attaquant, defenseur)
         $('#pvennemi').html(defenseur.vie);
         
         //ataque de l'ennemi
-        dmgfait = defenseur.dmg * (1.5/attaquant.armor);
-        $('#texteCombat').append(defenseur.nom + "ataque infligeant " +dmgfait+"dmg a " + attaquant.nom+"\n");
+        dmgfait = enemy.dmg * (1.5/player.armor);
+        $('#texteCombat').append(defenseur.nom + "ataque infligeant " +dmgfait+"dmg a " + attaquant.nom+"<br/>");
 
         if ((player.vie - dmgfait)<=0) {
             $('#pvjoueur').html("0");
@@ -71,19 +72,22 @@ function fincombat()
     $('#texteCombat').html("");
     $('#combat').stop().hide();
     $('#canvas').stop().show();
-    mDeplacement (ctx);
+    activeClavier();
     
  }
  function fuir()
  {
-    if(Math.floor(Math.random()) >0.6){
+    if(Math.floor(Math.random()) >0.6)
+    {
         alert("vous avez fuit avec succes !");
         fincombat();
-    }else
+    }
+    else
     {
         alert("vous n'avez pas couru assez vite!");
-        var dmgfait = enemy.dmg * (1.5/player.armor);
-        $('#texteCombat').append(enemy.nom + "ataque infligeant " +dmgfait+"dmg a " + player.nom +"\n");
+        
+         var dmgfait = enemy.dmg * (1.5/player.armor);
+        $('#texteCombat').append(enemy.nom + "ataque infligeant " +dmgfait+"dmg a " + player.nom +"<br/>");
 
         if ((player.vie - dmgfait)<=0) {
             $('#pvjoueur').html("0");
@@ -107,7 +111,7 @@ function fincombat()
    $('#pvjoueur').html(player.vie);
    $('#canvas').stop().hide();
    $('#combat').stop().show();
-   $('#texteCombat').append("un "+ enemy.nom +" sauvage apparait. \n");  
+   $('#texteCombat').append("un "+ enemy.nom +" sauvage apparait. <br/>");  
    $('#attaqueButton' ).stop().click(function() {
            attaque(player,enemy);
     });

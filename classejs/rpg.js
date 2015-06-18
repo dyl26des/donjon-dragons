@@ -2,26 +2,13 @@ var ts = new Tileset("tileset/mine.png");
 var joueur = new Personnage("Adam.png",0,0,0,true);
 var map = new Map("000",joueur);
 var inventaire= new Array();
-//inventaire[0]=new Equipement("Caisse en carton","armure",1,1,0);
-//inventaire[1]=new Equipement("Couteau a beurre","arme",0,1,3);
 var DUREE_ANIMATION = 4;
 var DUREE_DEPLACEMENT = 12;
 var ctx;
 var isPreCombat=false;
 var animID;
 var canvas = document.getElementById('canvas');
-function mDeplacement (ctx) {
-    
-        
-
-	canvas.width  = map.getLargeur() * 32;
-	canvas.height = map.getHauteur() * 32;
-	
-	animID=setInterval(function() {
-            map.dessinerMap(ctx);
-        }, 40);
-        
-        // Gestion du clavier
+function activeClavier(){
     window.onkeydown = function(event) {
 	
         var e = event || window.event;
@@ -48,8 +35,23 @@ function mDeplacement (ctx) {
         }
 	return false;
     };
+}
+function mDeplacement (ctx) {
+    
+        
+
+	canvas.width  = map.getLargeur() * 32;
+	canvas.height = map.getHauteur() * 32;
+	
+	animID=setInterval(function() {
+            map.dessinerMap(ctx);
+        }, 40);
+        
+        // Gestion du clavier
+    
     
 }
+
 function mPreCombat (ctx,mob) {
     
         if (!isPreCombat){
@@ -58,11 +60,7 @@ function mPreCombat (ctx,mob) {
 	canvas.width  = map.getLargeur() * 32;
 	canvas.height = map.getHauteur() * 32;
 	
-//	setInterval(function() {
-//            map.dessinerMap(ctx);
-//        }, 40);
-        
-        // Gestion du clavier
+
         
         window.onkeydown = function() {
             return false;
@@ -73,7 +71,7 @@ function mPreCombat (ctx,mob) {
         
         function popcombat()
         {
-            combat(mob,joueur,ctx);
+            combat(mob,joueur);
             map.getPersos().splice(map.getPersos().indexOf(mob),1);
             clearInterval(animID);
         }
