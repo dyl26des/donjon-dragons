@@ -46,7 +46,7 @@ function mDeplacement (ctx) {
 	animID=setInterval(function() {
             map.dessinerMap(ctx);
         }, 40);
-        
+        activeClavier();
         // Gestion du clavier
     
     
