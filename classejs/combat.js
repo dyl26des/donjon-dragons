@@ -25,7 +25,7 @@ function attaque(attaquant, defenseur)
         if ((player.vie - dmgfait)<=0) {
             $('#pvjoueur').html("0");
             alert('le joueur est mort (0pv) vous avez perdu la parite !');
-            fincombat();
+            location.reload(true);
         }else{
             player.vie-=dmgfait;
             $('#pvjoueur').html(player.vie);
@@ -39,6 +39,7 @@ function fincombat()
     $('#combat').stop().hide();
     $('#canvas').stop().show();
     mDeplacement (ctx);
+    
  }
  function fuir()
  {
@@ -54,7 +55,7 @@ function fincombat()
         if ((player.vie - dmgfait)<=0) {
             $('#pvjoueur').html("0");
             alert('le joueur est mort (0pv) vous avez perdu la parite !');
-            fincombat();
+            location.reload(true);
         }else{
             player.vie-=dmgfait;
             $('#pvjoueur').html(player.vie);

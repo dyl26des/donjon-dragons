@@ -34,9 +34,16 @@ function Personnage (tile,x,y,direction) {
  */
 function Personnage (tile,x,y,direction,isPlayer) {
     this.x=x;   this.y=y;   this.direction=direction;
-    this.vie= 8; this.nom = tile.split(".")[0];
+     this.nom = tile.split(".")[0];
+     if (isPlayer){
     this.dmg = 3 ;
     this.armor= 4;
+    this.vie= 8;
+     }else{
+    this.vie= Math.floor((Math.random() * 4))+2;
+    this.dmg = Math.floor((Math.random() * 2))+1;
+    this.armor= Math.floor((Math.random() * 4))+1;
+     }
     this.inagro=false; this.agroxy=[0,0]; this.isPlayer=isPlayer;
     // Chargement de l'image dans l'attribut image
 	this.image = new Image();
