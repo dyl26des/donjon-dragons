@@ -19,7 +19,8 @@ function attaque(attaquant, defenseur)
     {   
         defenseur.vie -= dmgfait;
         $('#pvennemy').html(defenseur.vie);
-        
+        dmgfait = defenseur.dmg * (1.5/attaquant.armor);
+        if ((player.vie - dmgfait)<=0)
     }
 }
 function fincombat()
