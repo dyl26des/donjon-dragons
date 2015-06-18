@@ -21,6 +21,28 @@ body
     background-image: url("tileset/menu screen.png");
     text-align: center;
 }
+.MenuButton
+{
+    position: absolute;
+    background-color: sandybrown;
+    border: solid black 1px;
+    left: 10em;
+    width: 10em;
+    height: 3em;
+}
+
+#Resume
+{
+    top: 8em;
+}
+#Inventory
+{
+    top: 18em;
+}
+#Restart
+{
+    top: 28em;
+}
 
 #combat
 {

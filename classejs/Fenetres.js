@@ -4,10 +4,8 @@ $('#menu').hide("slow");
 $('#combat').hide("slow");
 $('#canvas').show("slow");
 
-$(document).keyup(function(e) {
-    
-    if (e.keyCode === 27 && ($('#canvas').is(':visible') || $('#combat').is(':visible')))
-    {       
+function openmenu()
+{
             if($('#combat').is(':visible'))
             {
                 x="#combat";
@@ -19,14 +17,33 @@ $(document).keyup(function(e) {
                 $('#canvas').stop().hide("slow");
             }
             $('#menu').stop().show("slow");
+}
+
+function closemenu()
+{
+    $('#menu').stop().hide("slow");
+    $(x).stop().show("slow");
+}
+
+$(document).stop().keyup(function(e) {
+    
+    if (e.keyCode === 27 && ($('#canvas').is(':visible') || $('#combat').is(':visible')))
+    {       
+          openmenu();  
     }   
     else if (e.keyCode === 27 && $('#menu').is(':visible'))
     {
-            $('#menu').stop().hide("slow");
-            $(x).stop().show("slow");
+          closemenu();  
     }
     
+$('#Resume').stop().click()(function(){
+    alert('lalalalala');
+    closemenu();  
+});    
+    
 });
+
+
     
 
 
