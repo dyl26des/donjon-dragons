@@ -43,7 +43,7 @@ function attaque(attaquant, defenseur)
                     
             alert("bravo ! vous avez looter un(e) magnifique : " + nomitem);
             player.addItem(new Item(nomitem,typeitem,valeuritem));
-            console.log(player.isPlayer);
+            
             }
             
         fincombat();
@@ -100,11 +100,10 @@ function fincombat()
     }
  }
  
-    function combat(mob,joueur,context)
+    function combat(mob,joueur)
 {
    player = joueur;
    enemy = mob;
-   ctx= context;
    $('#nomjoueur').html(player.nom);
    $('#nomennemi').html(enemy.nom);
    $('#pvennemi').html(enemy.vie);
