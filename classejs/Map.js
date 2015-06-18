@@ -57,7 +57,7 @@ Map.prototype.getPersos = function() {
 };
 
 Map.prototype.getHauteur = function() {
-	return this.terrain0[0].length;
+	return this.terrain0.length;
 };
 Map.prototype.getLargeur = function() {
 	return this.terrain0[0].length;
