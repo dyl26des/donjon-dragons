@@ -3,7 +3,7 @@ var enemy;
 var ctx;
 function attaque(attaquant, defenseur)
 {
-    $('#texteCombat').append(attaquant.nom + "attack \n");
+    $('#texteCombat').append("\n " +attaquant.nom + "attack \n");
     var dmgfait = attaquant.dmg * (1.5/defenseur.armor);
     $('#texteCombat').append(attaquant.nom + " inflige " +dmgfait+"dmg a " + defenseur.nom+"\n");
     if ((defenseur.vie - dmgfait) <= 0){
