@@ -12,6 +12,39 @@ function attaque(attaquant, defenseur)
             $('#pvennemi').html("0");
             alert("le " + defenseur.nom + " a subi trop de dommage pour \n\
     survivre");
+            if (Math.random()<0.3) //loot d'objet
+            {
+                var nomitem;var valeuritem;
+                var typeitem= Math.floor(Math.random()*5);
+                
+                switch (typeitem){
+                case 0://arme
+                    valeuritem = Math.floor(Math.random()*2)+1;
+                    nomitem="epéemagique + "+ valeuritem;
+                    break;
+                case 1: //armure
+                    valeuritem = Math.floor(Math.random()*5)+2;
+                    nomitem="armuregéniale + "+ valeuritem;
+                    break;
+                case 3: //amulette
+                    valeuritem = Math.floor(Math.random()*2)+1;
+                    nomitem="amumulette + "+ valeuritem;
+                    break;
+                case 4: //potion
+                        valeuritem=0;
+                        nomitem="jus de fée";
+                    break;
+                default:
+                    valeuritem=0;
+                        nomitem="jus de fée";
+                        typeitem = 4;
+                    break;
+                    }
+                    
+            alert("bravo ! vous avez looter un(e) magnifique : " + nomitem);
+            player.addItem(new Item(nomitem,typeitem,valeuritem));
+            }
+            
         fincombat();
     }else
     {   

@@ -38,7 +38,8 @@ function Personnage (tile,x,y,direction,isPlayer) {
      if (isPlayer){
     this.dmg = 3 ;
     this.armor= 4;
-    this.vie= 8;
+    this.vie= 8;this.maxvie=8;
+    this.items = new Array();
      }else{
     this.vie= Math.floor((Math.random() * 4))+2;
     this.dmg = Math.floor((Math.random() * 2))+1;
@@ -219,7 +220,7 @@ Personnage.prototype.deplacer = function(direction,map) {
                     //cas 0 on ne fait rien, on peut se déplacer
                     case 0 : 
                     break;
-                    case 180:
+                    case 172:
                         if(this.isPlayer)
                         {   
                             this.vie -=1;
@@ -265,4 +266,27 @@ Personnage.prototype.deplacer = function(direction,map) {
         
 		
 	return true;
+};
+Personnage.prototype.addItem = function (item) {
+    if (this.isPlayer) {
+        switch (item.type){
+            case 0://arme
+                this.items.push(item);
+                this.dmg+= item.valeur;
+                break;
+            case 1: //armure
+                this.items.push(item);
+                this.armor+= item.valeur;
+                break;
+            case 3: //amulette
+                this.items.push(item);
+                this.maxvie+= item.valeur;
+                this.vie+= item.valeur;
+                break;
+            case 4: //potion
+                this.vie = this.maxvie;
+                break;
+        }
+        
+    }
 };

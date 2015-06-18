@@ -8,4 +8,3 @@ function Item (name,type,valeur) {
     this.type = type;
     this.valeur = valeur;
 }
-
