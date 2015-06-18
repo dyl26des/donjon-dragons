@@ -1,8 +1,4 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 function character (vie,armure,degats)
 {
     this.vie = vie;
@@ -19,10 +15,7 @@ function attaque()
 function fuir()
 {
     isPreCombat = false;
-    window.onkeydown = function() {
-            return true;
-        };
-    //alert(isPreCombat+' '+window.onkeydown());
+    alert(isPreCombat+' '+window.onkeydown());
     //map.getPersos().splice(map.getPersos().indexOf(mob),1);
     $('#combat').stop().hide();
     $('#canvas').stop().show();
